@@ -1,0 +1,30 @@
+{
+  "name": "@interops/diagram-viewer",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "main": "src/index.ts",
+  "description": "Pure manifest renderer — loads a diagram manifest (ERD / architecture / flowchart), renders interactively, exports PNG/SVG/Layout JSON.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "dependencies": {
+    "@phosphor-icons/react": "^2.1.10",
+    "@xyflow/react": "^12.3.5",
+    "elkjs": "^0.9.3",
+    "html-to-image": "^1.11.11"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.5"
+  }
+}

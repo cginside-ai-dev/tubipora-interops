@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+/* Xenia Web 디자인 토큰 (DESIGN.md) — 네이비 프라이머리 + 슬레이트 중립 */
+@theme {
+  --color-primary: #063a74;
+  --color-primary-hover: #084d96;
+  --color-on-primary: #ffffff;
+  --color-accent: #fabe00;
+  --color-secondary: #f1f5f9;
+  --color-on-secondary: #1e293b;
+  --color-neutral: #334155;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f8fafc;
+  --color-on-surface-muted: #64748b;
+  --color-border: #e2e8f0;
+  --color-ring: #94a3b8;
+  --color-error: #d4183d;
+
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  --font-sans: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui,
+    "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    letter-spacing: -0.02em;
+  }
+  body {
+    margin: 0;
+    background: var(--color-surface-muted);
+    color: var(--color-neutral);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  h1 {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+  h2 {
+    font-size: 20px;
+    font-weight: 500;
+  }
+  h3 {
+    font-size: 16px;
+    font-weight: 500;
+  }
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
