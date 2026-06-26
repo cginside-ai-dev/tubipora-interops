@@ -12,8 +12,8 @@ const ROW = "flex items-center gap-2.5 rounded-lg px-2.5 py-2 text-[14px] cursor
 
 // 횡단 인프라(메신저·문서 허브) — 특정 역량 슬롯이 아니라 상시 바로가기. 푸터에 고정.
 const TOOLS = [
-  { label: "Teams", href: "#" },
-  { label: "Notion", href: "#" },
+  { role: "메신저", label: "Teams", href: "https://teams.microsoft.com/v2/" },
+  { role: "위키", label: "Notion", href: "https://app.notion.com/p/cginside/3881847f058f8018a54eef689deff138" },
 ];
 
 function EntryRow({ entry }: { entry: CatalogEntry }) {
@@ -65,7 +65,7 @@ export function Sidebar() {
         </div>
       ))}
 
-      <div className="mt-auto pt-3">
+      <div className="mt-auto border-t border-border pt-3">
         <div className="px-2.5 pb-1 text-[11px] font-bold uppercase tracking-wide text-on-surface-muted">
           도구
         </div>
@@ -78,7 +78,8 @@ export function Sidebar() {
             className={`${ROW} text-neutral hover:bg-secondary`}
           >
             <span className="w-4 text-center text-xs text-primary">↗</span>
-            <span>{t.label}</span>
+            <span>{t.role}</span>
+            <span className="ml-auto text-[12px] text-on-surface-muted">{t.label}</span>
           </a>
         ))}
 
