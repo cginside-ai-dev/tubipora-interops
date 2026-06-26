@@ -15,4 +15,8 @@ export const router = createBrowserRouter([
       ...stubRoutes,
     ],
   },
-]);
+], {
+  // 서브패스(/tubipora-interops/)로 배포되므로 라우터도 같은 base를 알아야
+  // 경로가 매칭된다. 없으면 전부 no-match → ErrorPage. dev에선 BASE_URL이 "/".
+  basename: import.meta.env.BASE_URL,
+});
