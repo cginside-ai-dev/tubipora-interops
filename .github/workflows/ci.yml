@@ -34,3 +34,47 @@ jobs:
 
       - name: Build
         run: npm run build
+
+  # main 푸시에만 GitHub Pages로 배포 (PR·기타 브랜치는 build 게이트까지만).
+  # 사전 1회: 리포 Settings → Pages → Source 를 "GitHub Actions" 로 설정해야 함.
+  deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+
+      - name: Install (workspaces, from lockfile)
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      # GitHub Pages는 SPA 폴백이 없어 새로고침/딥링크 시 404 → index.html 복사로 처리.
+      - name: SPA fallback (404.html = index.html)
+        run: cp dist/index.html dist/404.html
+
+      - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
+
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: dist
+
+      - id: deploy
+        uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5.0.0
